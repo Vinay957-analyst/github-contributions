@@ -18,7 +18,8 @@ jobs:
           persist-credentials: true
 
       - name: Update file
-        run: echo "$(date)" >> activity.txt
+        run: |
+          echo "$(date)" >> activity.txt
 
       - name: Commit changes
         run: |
