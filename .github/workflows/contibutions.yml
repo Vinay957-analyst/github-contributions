@@ -1,0 +1,28 @@
+name: Daily Contributions
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update file
+        run: echo "$(date)" >> activity.txt
+
+      - name: Commit changes
+        run: |
+          git config user.name "Vinay957-analyst"
+          git config user.email "21kq1a0546cse@gmail.com"
+
+          git add .
+          git diff --cached --quiet || git commit -m "Daily contribution"
+          git push
